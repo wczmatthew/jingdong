@@ -62,6 +62,32 @@
                                 </ul>
                             </cube-scroll>
                         </cube-slide-item>
+                        <!-- 列表 -->
+                        <cube-slide-item>
+                            <cube-scroll :data="listData" :options="scrollOptions">
+                            <ul class="list-wrapper">
+                                <li v-for="(item, index) in listData" class="list-item" :key="index">
+                                    <div class="wd-opt">
+                                        <img class="wd-opt-edit" src="../assets/remark.png">
+                                    </div>
+                                    <div class="wd-content">
+                                        <div class="wd-left">
+                                            <img :src="item.avatar" class="avatar">
+                                        </div>
+                                        <ul class="wd-right">
+                                            <li>项目/目标: {{item.Attribute2}}</li>
+                                            <li>任务: {{item.Attribute3}}</li>
+                                            <li class="wd-right-tip">
+                                                <span>备注: </span>
+                                                <span class="wd-right-tip-level">{{item.remark}}</span>
+                                            <li>地址: 温州</li>
+                                            <li>工时: {{item.utime}}</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                            </cube-scroll>
+                        </cube-slide-item>
                     </cube-slide>
                 </div>
             </div>
@@ -71,12 +97,12 @@
 
 <script>
 import CubePage from '../components/cube-page'
-import {FOLLOWERS_DATA, RECOMMEND_DATA, HOT_DATA} from '../tab-bar'
+import {FOLLOWERS_DATA, RECOMMEND_DATA, HOT_DATA, LIST_DATA} from '../tab-bar'
 import {findIndex} from 'cube-ui/src/common/helpers/util'
 export default {
     data () {
         return {
-            selectedLabel: '推荐',
+            selectedLabel: '列表',
             disabled: false,
             tabLabels: [
                 {
@@ -85,6 +111,8 @@ export default {
                 label: '推荐'
                 }, {
                 label: '热榜'
+                }, {
+                label: '列表'
                 }
             ],
             loop: false,
@@ -102,7 +130,8 @@ export default {
             },
             followersData: FOLLOWERS_DATA,
             recommendData: RECOMMEND_DATA,
-            hotData: HOT_DATA
+            hotData: HOT_DATA,
+            listData: LIST_DATA,
         }
     },
     methods: {
@@ -156,6 +185,7 @@ export default {
             left: 0
             right: 0
             bottom: 0
+            background: #efeff4
         .list-wrapper
             overflow: hidden
             li
@@ -200,5 +230,36 @@ export default {
                         color: white
                 .hot-content
                     margin-top: 15px
+                .wd-opt
+                    width: 100%
+                    height: 25px
+                    line-height: 25px
+                    position:relative
+                    .wd-opt-edit
+                        width: 15px
+                        position: absolute
+                        right: 2px
+                        top: 10px
+                .wd-content
+                    width: 100%
+                    display: flex
+                    flex-wrap: wrap
+                    .wd-left
+                        position: relative
+                        display: inline-block
+                        width: 20%
+                    .wd-right
+                        li
+                            padding: 0 0;
+                            margin-top: 0
+                        display: inline-block
+                        width: 75%
+                        padding-left: 10px
+                        margin-top: -2px
+                        .wd-right-tip
+                            margin-bottom: 3px
+                            .wd-right-tip-level
+                                color:
+
 </style>
 
