@@ -59,6 +59,7 @@ export default new Router({
           },
           component: () => import('./views/Cart.vue')
         },
+        /*
         {
           path: 'mine',
           name: 'mine',
@@ -66,6 +67,15 @@ export default new Router({
             requireAuth:true,//当有这个字段的时候，我们就认为他这个路由页面是要有登录权限的
           },
           component: () => import('./views/Mine.vue')
+        },
+        */
+       {
+          path: 'scroll',
+          name: 'scroll',
+          meta:{
+            requireAuth:true,//当有这个字段的时候，我们就认为他这个路由页面是要有登录权限的
+          },
+          component: () => import('./views/Scroll.vue')
         },
       ]
     },
