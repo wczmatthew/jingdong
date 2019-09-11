@@ -22,7 +22,7 @@
                         <!-- 关注 -->
                         <cube-slide-item>
                             <cube-scroll :data="followersData" :options="scrollOptions">
-                            <ul class="list-wrapper">
+                            <ul class="list-wrapper" pp=1>
                                 <li v-for="(item, index) in followersData" class="list-item" :key="index">
                                 <div class="top">
                                     <img :src="item.avatar" class="avatar">
@@ -36,8 +36,8 @@
                         </cube-slide-item>
                         <!-- 推荐 -->
                         <cube-slide-item>
-                            <cube-scroll :data="recommendData" :options="scrollOptions">
-                            <ul class="list-wrapper">
+                            <!-- <cube-scroll :data="recommendData" :options="scrollOptions">
+                            <ul class="list-wrapper" pp=2>
                                 <li v-for="(item, index) in recommendData" class="list-item" :key="index">
                                 <div class="top is-black is-bold line-height">
                                     {{item.question}}
@@ -46,11 +46,12 @@
                                 <div>{{resolveQuestionFollowers(item)}}</div>
                                 </li>
                             </ul>
-                            </cube-scroll>
+                            </cube-scroll> -->
+                            <work-task-list ref="work-task-list" wcz="work-task-list"></work-task-list>
                         </cube-slide-item>
                         <cube-slide-item>
                             <cube-scroll :data="hotData" :options="scrollOptions">
-                                <ul class="list-wrapper">
+                                <ul class="list-wrapper" pp=3>
                                     <li v-for="(item, index) in hotData" class="list-item" :key="index">
                                         <div class="hot-title">
                                             <span class="hot-sequence">{{item.sequence}}</span>
@@ -73,18 +74,20 @@
 import CubePage from '../components/cube-page'
 import {FOLLOWERS_DATA, RECOMMEND_DATA, HOT_DATA} from '../tab-bar'
 import {findIndex} from 'cube-ui/src/common/helpers/util'
+import WorkTaskList from './WorkTaskList/WorkTaskList.vue'
+
 export default {
     data () {
         return {
-            selectedLabel: '推荐',
+            selectedLabel: '本周',
             disabled: false,
             tabLabels: [
                 {
-                label: '关注'
+                label: '本周'
                 }, {
-                label: '推荐'
+                label: '本月'
                 }, {
-                label: '热榜'
+                label: '所有'
                 }
             ],
             loop: false,
@@ -132,7 +135,8 @@ export default {
         }
     },
     components: {
-        CubePage
+        CubePage,
+        WorkTaskList
     }
 }
 </script>

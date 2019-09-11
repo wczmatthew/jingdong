@@ -10,6 +10,7 @@
     "amfe-flexible": "^2.2.1",
     "axios": "^0.18.0",
     "cube-ui": "~1.12.1",
+    "qs": "^6.7.0",
     "vue": "^2.5.22",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
@@ -18,6 +19,8 @@
     "@vue/cli-plugin-babel": "^3.4.0",
     "@vue/cli-service": "^3.4.0",
     "postcss-px2rem": "^0.3.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.1.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vue-cli-plugin-cube-ui": "^0.2.4",

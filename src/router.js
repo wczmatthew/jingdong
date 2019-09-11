@@ -32,6 +32,11 @@ export default new Router({
       component: () => import('./views/Index.vue')
     },
     {
+        path: '/scroll',
+        name: 'scroll',
+        component: () => import('./views/Scroll.vue')
+      },
+    {
       path: '/botnav',
       name: 'botnav',
       component: () => import('./views/Botnav.vue'),

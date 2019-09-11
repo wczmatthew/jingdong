@@ -6,6 +6,12 @@ import store from './store'
 import axios from 'axios'
 import 'amfe-flexible'
 import setaxios from './setaxios'
+
+import WContainer from './components/WContainer.vue'
+import WScroll from './components/WScroll.vue'
+import NoData from './components/NoData.vue'
+import WLoadingRow from './components/WLoadingRow.vue'
+
 setaxios()
 Vue.config.productionTip = false
 Vue.prototype.$http=axios
@@ -28,6 +34,12 @@ router.beforeEach((to,from,next)=>{
     next()
   }
 })
+
+Vue.component('w-container', WContainer);
+Vue.component('w-scroll', WScroll);
+Vue.component('no-data', NoData);
+Vue.component('w-loading-row',WLoadingRow);
+
 new Vue({
   router,
   store,
