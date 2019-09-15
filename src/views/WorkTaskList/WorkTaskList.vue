@@ -12,12 +12,21 @@
                     <div class="middle is-grey line-height">{{item.content}}</div>
                     <div>{{resolveQuestionFollowers(item)}}</div>
                     </li> -->
-                    <li class="list-item" >
-                        <div class="top is-black is-bold line-height">
-                            1.sadkfajskf
+                    <li class="list-item">
+                        <div class="wt-li-header">
+                            <!--头部放编辑按钮-->
                         </div>
-                        <div class="middle is-grey line-height">ksfkafjkasfjksafjasfksf</div>
-                        <div>1111</div>
+                        <div class="wt-li-body">
+                            <div class="wt-li-left">
+                                <img src="@/assets/logo.png">
+                            </div>
+                            <div class="wt-li-right">
+                                <ul>
+                                    <li>项目:微讯二次开发</li>
+                                    <li>任务:代码</li>
+                                </ul>
+                            </div>
+                        </div>
                     </li>
                     <li class="list-item" >
                         <div class="top is-black is-bold line-height">
@@ -58,6 +67,9 @@ export default {
             worktaskList: [],
         }
     },
+    methods: {
+
+    }
 }
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
@@ -89,38 +101,16 @@ export default {
                 font-size: 14px
                 color: #999
                 white-space: normal
-                .line-height
-                    line-height: 1.5
-                .is-black
-                    color: black
-                .is-grey
-                    color: #999
-                .is-bold
-                    font-weight: bold
-                .top
+                .wt-li-header
+                    height: 10px;
+                .wt-li-body
                     display: flex
-                    .avatar
-                        width: 15px
-                        height: 15px
-                        margin-right: 2px
-                        border-radius: 100%
-                    .time
-                        flex: 1
-                .middle
-                    display: flex
-                    margin: 10px 0
-                    color: black
-                .hot-title
-                    display: flex
-                    align-items: center
-                    font-size: 12px
-                    .hot-sequence
-                        display: inline-block
-                        margin-right: 2px
-                        padding: 3px 6px
-                        border-radius: 2px
-                        background-color: darkgoldenrod
-                        color: white
-                .hot-content
-                    margin-top: 15px
+                    .wt-li-left
+                        width: 30%
+                        img 
+                            width: 50px
+                            height: 50px
+                            padding-left: 5px
+                    .wt-li-right
+                        width: 65%
 </style>
