@@ -43,28 +43,28 @@ function getProjectName() {
 
 
 function handleRes(response, showErrToast) {
-  if (parseInt(response.data.code, 10) === LOGOUT) {
-    Utils.showToast('退出登录成功');
-    router.push('/');
-    return '';
-  }
+//   if (parseInt(response.data.code, 10) === LOGOUT) {
+//     Utils.showToast('退出登录成功');
+//     router.push('/');
+//     return '';
+//   }
 
-  if (parseInt(response.data.code, 10) === LOGINERR) {
-    // localStorage.clear();
-    // console.log('clear local');
-    Utils.showToast(response.data.msg || '登录超时, 请重新登录');
-    router.push('/');
-    return '';
-  }
+//   if (parseInt(response.data.code, 10) === LOGINERR) {
+//     // localStorage.clear();
+//     // console.log('clear local');
+//     Utils.showToast(response.data.msg || '登录超时, 请重新登录');
+//     router.push('/');
+//     return '';
+//   }
 
-  if (showErrToast && parseInt(response.data.code, 10) !== SUCCESS) {
-    Utils.showToast(response.data.msg || '请求失败, 请重试');
-    return '';
-  }
+//   if (showErrToast && parseInt(response.data.code, 10) !== SUCCESS) {
+//     Utils.showToast(response.data.msg || '请求失败, 请重试');
+//     return '';
+//   }
 
-  if (process.env.NODE_ENV !== 'production') {
-    console.debug('response: ', response.data.data);
-  }
+//   if (process.env.NODE_ENV !== 'production') {
+//     console.debug('response: ', response.data.data);
+//   }
   return response.data.data || ' ';
 }
 

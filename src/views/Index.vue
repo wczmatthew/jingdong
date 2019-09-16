@@ -112,6 +112,8 @@ export default {
         changePage (current) {
             this.selectedLabel = this.tabLabels[current].label
             console.log(current)
+            let en = process.env.NODE_EN
+            console.log('en = ' + en)
         },
         scroll (pos) {
             const x = Math.abs(pos.x)

@@ -1,20 +1,27 @@
 <<template lang="html">
     <div class="worktasklist-container">
         <div class="worktask-list">
-            <w-scroll ref="scroll" @pulling-down="OnPullingDown" @pulling-up="OnPullingUp">
+            <w-scroll ref="scroll" on:pulling-down="OnPullingDown" on:pulling-up="OnPullingUp">
                 <no-data v-if="noData"></no-data>
                 <w-loading-row v-if="isFirstLoading"></w-loading-row>
                 <ul class="list-wrapper">
-                    <!-- <li v-for="(item, index) in recommendData" class="list-item" :key="index">
-                    <div class="top is-black is-bold line-height">
-                        {{item.question}}
-                    </div>
-                    <div class="middle is-grey line-height">{{item.content}}</div>
-                    <div>{{resolveQuestionFollowers(item)}}</div>
-                    </li> -->
-                    <li class="list-item">
+                    <li v-for="(item, index) in worktaskList" class="list-item" :key="index">
                         <div class="wt-li-header">
-                            <!--头部放编辑按钮-->
+                        </div>
+                        <div class="wt-li-body">
+                            <div class="wt-li-left">
+                                <img src="@/assets/logo.png">
+                            </div>
+                            <div class="wt-li-right">
+                                <ul>
+                                    <li>项目:{{ item.TEXT1 }}</li>
+                                    <li>任务:{{ item.TYPE2 }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- <li class="list-item">
+                        <div class="wt-li-header">
                         </div>
                         <div class="wt-li-body">
                             <div class="wt-li-left">
@@ -48,7 +55,7 @@
                         </div>
                         <div class="middle is-grey line-height">ksfkafjkasfjksafjasfksf</div>
                         <div>4444</div>
-                    </li>
+                    </li> -->
                 </ul>
             </w-scroll>
         </div>
@@ -62,14 +69,39 @@ import { mapGetters } from 'vuex';
 export default {
     data() {
         return {
+            isFirstLoading: true,
+            noData: true,
             pageNum: 1,
-            pageSize: 30,
+            pageSize: 10,
             worktaskList: [],
         }
     },
+    mounted() {
+        this.onPullingDown();
+    },
     methods: {
+        onPullingDown() {
+            console.log("wt list on pulling down");
+            this.pageNum = 1;
+            this.getData();
+        },
+        onPullingUp() {
 
-    }
+        },
+        async getData() {
+            const result = await service.getWorkTaskList({userid: '用户ID', pageNum: this.pageNum, pageSize: this.pageSize, type: this.type});
+            this.isFirstLoading = false;
+            if (!result) return;
+            if (this.pageNum == 1) {
+                this.$refs.worktaskList && this.$refs.worktaskList.updateList([]);
+                this.worktaskList = result.rows;
+            } else {
+                this.worktaskList = this.worktaskList.concat([...result.rows]);
+            }
+
+            this.$refs.scroll && this.$refs.scroll.forceUpdate(true);
+        }
+    },
 }
 </script>
 <style lang="stylus" rel="stylesheet/stylus">

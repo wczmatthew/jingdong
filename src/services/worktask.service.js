@@ -10,7 +10,7 @@ export default {
    */
   getWorkTaskList: ({ userid, pageNum, pageSize, type }) => {
     if (!userid) return '';
-    const params = { userid, pageNum, pageSize: pageSize || 20, clientId, rateClientId };
+    const params = { userid, pageNum, pageSize: pageSize || 20, type: type};
     return postHttp({ url: '/', params });
   },
   
