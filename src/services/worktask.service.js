@@ -8,10 +8,10 @@ export default {
    * @param pageSize    一页显示多少条
    * @param type        类型(本周 本月 所有))
    */
-  getWorkTaskList: ({ userid, pageNum, pageSize, type }) => {
-    if (!userid) return '';
-    const params = { userid, pageNum, pageSize: pageSize || 20, type: type};
-    return postHttp({ url: '/', params });
+  getWorkTaskList: ({ arg1, pageNum, pageSize, type }) => {
+    if (!arg1) return '';
+    const params = { arg1, pageNum, pageSize: pageSize || 20, type: type};
+    return getHttp({ url: '/getUserDayTask', params });
   },
   
 };

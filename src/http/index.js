@@ -11,6 +11,7 @@ import {
   SUCCESS,
   MOCKHOST,
   EASEMOCKHOST,
+  wt_baseUrl,
 } from './httpConst';
 import router from '../router';
 
@@ -23,7 +24,7 @@ if (process.env.NODE_ENV === 'production') {
   // httpHost = '/local';
   httpHost = '/test';
 }
-
+httpHost = wt_baseUrl;
 // console.log('http env: ', process.env.NODE_ENV)
 
 export { httpHost };
@@ -65,7 +66,7 @@ function handleRes(response, showErrToast) {
 //   if (process.env.NODE_ENV !== 'production') {
 //     console.debug('response: ', response.data.data);
 //   }
-  return response.data.data || ' ';
+  return response || ' ';
 }
 
 /**
@@ -109,12 +110,14 @@ export async function postHttp({
 }) {
   handleHttpHost(host);
   try {
+    params = {arg2:'mobile_oa',...params};
+    console.log('url =' + url);
     const response = await axios.post(url, qs.stringify(params), {
       ...config,
       // headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
       timeout: 30000,
     });
-
+    console.log("response => " + response);
     return handleRes(response, showErrToast);
   } catch (e) {
     console.error('err: ', e);
@@ -217,6 +220,7 @@ export async function getHttp({
   handleHttpHost(host);
 
   try {
+    params = {arg2:'mobile_oa',...params};
     const response = await axios.get(url, { params }, {
       // headers: {
       //   'Content-Type': 'application/json',
@@ -226,7 +230,6 @@ export async function getHttp({
       // headers: { 'Content-Type': 'application/json; charset=UTF-8' },
       timeout: 30000,
     });
-
     return handleRes(response, showErrToast);
   } catch (e) {
     console.error('err: ', e);

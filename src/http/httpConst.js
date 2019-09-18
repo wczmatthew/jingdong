@@ -6,3 +6,5 @@ export const EASEMOCKHOST = 'https://www.easy-mock.com/mock/5b85f4edb6eb682fc7f9
 export const MOCKHOST = 'http://result.eolinker.com/WBwZGMIb4e65524151e9e3de2c3e006fdacbc66ae2119c2?uri='; // eolinker-mock 的地址
 
 export const baseUrl = process.env.NODE_ENV === 'production' ? '/MobileOa/Html/#' : '/#';
+
+export const wt_baseUrl = 'http://10.2.63.21/WorkTask/public/index/WorkApi/';   //getDayTask?arg2=mobile_oa'';

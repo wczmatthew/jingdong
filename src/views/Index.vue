@@ -142,7 +142,9 @@ export default {
     }
 }
 </script>
-
+<style lang="scss" scoped>
+@import '~@/styles/variable.scss';
+</style>
 <style lang="stylus" rel="stylesheet/stylus">
     .cube-page
         &.tab-composite-view
