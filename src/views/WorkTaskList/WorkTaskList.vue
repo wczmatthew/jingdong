@@ -98,6 +98,8 @@ export default {
             noData: true,
             pageNum: 1,
             pageSize: 10,
+            totalNum: 0,
+            hasNext: true,
             worktaskList: [],
         }
     },
@@ -105,11 +107,13 @@ export default {
         this.onPullingDown();
     },
     methods: {
+        // 下拉刷新，将重新进行数据首次数据获取
         onPullingDown() {
             console.log("wt list on pulling down");
             this.pageNum = 1;
             this.getData();
         },
+        // 上拉加载，将加载更多数据
         onPullingUp() {
 
         },
@@ -117,17 +121,20 @@ export default {
             const result = await service.getWorkTaskList({arg1: '2d9b35b0dc4cc56540bdce0fe3ed5f75', pageNum: this.pageNum, pageSize: this.pageSize, type: this.type});
             this.isFirstLoading = false;
             if (!result) return;
-            console.log("get Data -> "+result[0]['USER_ID']);
             if (this.pageNum == 1) {
                 this.$refs.worktaskList && this.$refs.worktaskList.updateList([]);
-                this.worktaskList = result;
+                this.worktaskList = result.rows;
             } else {
                 this.worktaskList = this.worktaskList.concat([...result.rows]);
             }
+            this.totalNum = result.total;
 
             this.$refs.worktaskList && this.$refs.worktaskList.updateList(this.worktaskList);
             this.noData = !this.worktaskList.length;
-
+            this.hasNext = this.worktaskList.length < result.total;
+            if (this.hasNext) {
+                this.pageNum += 1;
+            }
             this.$refs.scroll && this.$refs.scroll.forceUpdate(true);
         }
     },
