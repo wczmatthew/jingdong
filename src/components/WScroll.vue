@@ -63,5 +63,6 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="stylus" rel="stylesheet/stylus">
+
 </style>

@@ -33,7 +33,7 @@
                             </div>
                             <div class="wt-li-right">
                                 <ul>
-                                    <li>项目:{{ item.Attribute11 }}</li>
+                                    <li>{{index}}项目:{{ item.Attribute11 }}</li>
                                     <li>任务:{{ item.Attribute3 }}</li>
                                 </ul>
                             </div>
@@ -115,10 +115,15 @@ export default {
         },
         // 上拉加载，将加载更多数据
         onPullingUp() {
-
+            if(!this.hasNext) {
+                // 没有数据
+                this.$refs.scroll && this.$refs.scroll.forceUpdate(true);
+                return;
+            }
+            this.getData();
         },
         async getData() {
-            const result = await service.getWorkTaskList({arg1: '2d9b35b0dc4cc56540bdce0fe3ed5f75', pageNum: this.pageNum, pageSize: this.pageSize, type: this.type});
+            const result = await service.getWorkTaskList({arg1: '2d9b35b0dc4cc56540bdce0fe3ed5f76', pageNum: this.pageNum, pageSize: this.pageSize, type: this.type});
             this.isFirstLoading = false;
             if (!result) return;
             if (this.pageNum == 1) {
@@ -141,32 +146,13 @@ export default {
 }
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
-    .cube-page
-        &.tab-composite-view
-            > .wrapper
-                > .content
-                    margin: 0
-    .tab-composite-view
-        .cube-tab-bar
-            background-color: white
-        .cube-tab, .cube-tab_active
-            color: black
-        .cube-tab-bar-slider
-            background-color: black
-        .tab-slide-container
-            position: fixed
-            top: 33px   /*74px 由于去掉header */
-            left: 0
-            right: 0
-            bottom: 0
-            .worktasklist-container 
+            .worktasklist-container
+                top: 2px;
                 height: 100%;
                 width: 100%;
                 display: flex;
                 flex-direction: column;
                 overflow: hidden;
-                
-
                 .worktask-list 
                     flex: 1;
                     overflow: auto;
@@ -176,30 +162,37 @@ export default {
                     display: flex;
                     flex-direction: column;
                     padding-top: .1rem;
-
                     .scroll-view 
                         flex: 1;
-                
-                        .list-wrapper
-                            overflow: hidden
-                            li
-                                padding: 15px 10px
-                                margin-top: 10px
-                                text-align: left
-                                background-color: white
-                                font-size: 14px
-                                color: #999
-                                white-space: normal
-                                .wt-li-header
-                                    height: 10px;
-                                .wt-li-body
-                                    display: flex
-                                    .wt-li-left
-                                        width: 30%
-                                        img 
-                                            width: 50px
-                                            height: 50px
-                                            padding-left: 5px
-                                    .wt-li-right
-                                        width: 65%
+                        .cube-pulldown-loaded
+                            span 
+                                font-size:14px;
+                        .cube-scroll-content
+                            .cube-pullup-wrapper
+                                .before-trigger
+                                    span
+                                        font-size:14px
+                            .cube-scroll-list-wrapper
+                                .list-wrapper
+                                    overflow: hidden
+                                    li
+                                        padding: 15px 10px
+                                        margin-top: 10px
+                                        text-align: left
+                                        background-color: white
+                                        font-size: 14px
+                                        color: #999
+                                        white-space: normal
+                                        .wt-li-header
+                                            height: 10px;
+                                        .wt-li-body
+                                            display: flex
+                                            .wt-li-left
+                                                width: 30%
+                                                img 
+                                                    width: 50px
+                                                    height: 50px
+                                                    padding-left: 5px
+                                            .wt-li-right
+                                                width: 65%
 </style>

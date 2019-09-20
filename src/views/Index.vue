@@ -143,7 +143,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '~@/styles/variable.scss';
+/*@import '~@/styles/variable.scss';*/
 </style>
 <style lang="stylus" rel="stylesheet/stylus">
     .cube-page
@@ -154,10 +154,13 @@ export default {
     .tab-composite-view
         .cube-tab-bar
             background-color: white
+            font-size: 16px;
         .cube-tab, .cube-tab_active
             color: black
         .cube-tab-bar-slider
             background-color: black
+            height: 2px;
+            z-index: 9999;
         .tab-slide-container
             position: fixed
             top: 33px   /*74px 由于去掉header */
